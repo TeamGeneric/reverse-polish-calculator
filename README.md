@@ -40,7 +40,33 @@ Usage
 ````
 $calc = new ReversePolishCalculator();
 
+
+// watch the state change when you calculate.
+// used to update the UI after 
+// every button press. modelled after the 
+// behavior of the OSX RPN calculator.
+
+$calc
+	->enter(10)
+	->enter(5)
+	;
+print_r($calc->getStack());
+
+$calc
+	->enter(1)
+	->add()
+	;
+	
+print_r($calc->getStack());
+
+$calc->multiply();
+print_r($calc->getStack());
+
+
+	
+
 // evaluate using a functional style
+$calc->clear()
 $calc
 	->enter(10)
 	->enter(5)
