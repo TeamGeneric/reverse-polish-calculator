@@ -1,32 +1,46 @@
 README
 ======
 
+Overview
+--------
 
-install
+This is a quick coding test that I was asked to do by a prospective employer. It's a
+pretty straightforward implementation of a reverse polish notation calculator in Object
+Oriented PHP. It also demonstrates a simple implementation of unit testing using [PHPUnit](https://phpunit.de/)
+
+
+Install
 -------
 
-Using composer as a dependency manager.
+[Composer](https://getcomposer.org/) is a tool for dependency management in PHP. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
 
-Composer is a tool for dependency management in PHP. It allows you to declare the libraries your project depends on and it will manage (install/update) them for you.
 
-[source](https://getcomposer.org/doc/00-intro.md)
+We are using composer to manage the dependency on php and phpunit.
 
 
 ````
-php composer.phar install
+// get a copy of this repository
+$ git clone https://github.com/TeamGeneric/reverse-polish-calculator.git
+
+// use composer to install dependencies
+$ cd reverse-polish-calculator
+$ php composer.phar install
+
+// run the phpunit tests
+$ composer test
+
+// run an example file showing its usage
+$ php example.php
+
 ````
 
-design
-------
-
-modeled after the reverse polish notation mode on the OSX calculator.
-
-usage
+Usage
 -----
 
 ````
 $calc = new ReversePolishCalculator();
 
+// evaluate using a functional style
 $calc
 	->enter(10)
 	->enter(5)
@@ -35,18 +49,26 @@ $calc
 	->multiply()
 	;
 
-$stack = $calc->getStack();
+if(!$answer = $calc->getAnswer()){
+	echo "cannot be fully evaluated. recheck the number of operands and operators";
+} else {
+	echo $answer;
+}
 
-// evaluate a RPN string
-$val = $calc->evaluate('10 5 1 + *');
+// evaluate using a RPN string
+if(!$answer = $calc->evaluate('10 5 1 + *')){
+	echo "cannot be fully evaluated. recheck the number of operands and operators";
+} else {
+	echo $answer;
+}
 
 ````
 
 
-tests
+Tests
 -----
 
-Use PHPUnit to run test cases from the command line
+Use PHPUnit to run test cases from the command line.
 
 ````
 $ phpunit
