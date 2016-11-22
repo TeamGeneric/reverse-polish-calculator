@@ -185,5 +185,35 @@ class ReversePolishCalculatorTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals([2], $calc->getStack());
     }
 
+    /**
+     * Test getAnswer
+     */
+    public function testGeAnswer()
+    {
+        $calc = new ReversePolishCalculator();
+        $calc
+            ->enter(4)
+            ->enter(2)
+            ->divide()
+            ;
+
+        $this->assertEquals(2, $calc->getAnswer());
+    }
+
+    /**
+     * Test getAnswer incomplete.
+     */
+    public function testGeAnswerIncomplete()
+    {
+        $calc = new ReversePolishCalculator();
+        $calc
+            ->enter(4)
+            ->enter(3)
+            ->enter(2)
+            ->divide()
+            ;
+
+        $this->assertEquals(false, $calc->getAnswer());
+    }
 
 }

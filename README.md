@@ -35,6 +35,8 @@ $calc
 	->multiply()
 	;
 
+$stack = $calc->getStack();
+
 // evaluate a RPN string
 $val = $calc->evaluate('10 5 1 + *');
 

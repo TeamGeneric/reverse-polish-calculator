@@ -212,7 +212,31 @@ class ReversePolishCalculator
     }
 
     /**
+     * get the fully calculated answer,
+     * or return false, if the operand stack
+     * is incomplete
+     *
+     * @param void
+     * @return integer or FALSE
+     */
+    public function getAnswer(){
+
+        if(!is_array($this->stack)){
+            return 0;
+        }
+
+        if(1 === sizeof($this->stack)){
+            return ($this->stack[0]);
+        } else {
+            return false;
+        }
+    }
+
+    /**
      * give access to the call stack
+     *
+     * @param void
+     * @return array
      */
     public function getStack(){
         return $this->stack;
@@ -220,6 +244,8 @@ class ReversePolishCalculator
 
     /**
      * wrapper arount print_r...for testing
+     * 
+     * @param void
      */
     public function toString(){
         print_r($this->stack);
